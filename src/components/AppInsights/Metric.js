@@ -1,4 +1,5 @@
 import React from 'react'
+import './Metric.css'
 
 export default class Metric extends React.Component{
     constructor(props)
@@ -7,20 +8,12 @@ export default class Metric extends React.Component{
     }
     
     render(){
-        var value = this.props.value;
-        const print_value = JSON.stringify(value,null,'\n');
+        var data = this.props;
+        const print_value = JSON.stringify(data,null,'\n');
         return (
-            <div>
-                <p>{print_value}</p>
-                {/*_array.map(
-                    (value,index)=>{
-                        return <p key={index}>{value}</p>
-                    }
-                )*/}
-                {/*props.map((metric)=>{
-                        <p>{metric}</p>
-                    }
-                )*/}
+            <div className = "metric">
+                <p id="tag">Raw Response:</p>
+                <p id="jsonData" >{print_value}</p>
             </div>
         )
     };

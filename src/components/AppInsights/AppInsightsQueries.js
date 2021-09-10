@@ -1,5 +1,6 @@
 import React from 'react';
 import Metric from './Metric';
+import LineChart from '../Graphics/LineChart';
 
 class AppInsightsQueries extends React.Component{
     constructor(props) 
@@ -24,8 +25,8 @@ class AppInsightsQueries extends React.Component{
             isLoaded: true,
             error:true })
         }
-        const path='https://api.applicationinsights.io/v1/apps/'+ process.env.REACT_APP_APPINSINGHTS_APPID 
-        +'/metrics/requests/duration?interval=PT1H';
+        const path='https://api.applicationinsights.io/v1/apps/'+ process.env.REACT_APP_APPINSIGHTS_APPID 
+        +'/metrics/requests/count?timespan=P7D&interval=P1D&aggregation=sum';
         hr.open('GET', path, true);
         hr.setRequestHeader("x-api-key", process.env.REACT_APP_APPINSIGHTS_KEY);
         hr.send();
@@ -41,10 +42,8 @@ class AppInsightsQueries extends React.Component{
         } else {
             return (
                 <div>
-                    {/*<p>Hello</p>
-                    <p>{JSON.stringify(item)}</p>
-                    <p>{this.state.text}</p>*/}
-                    <Metric {...item}/>
+                    <Metric {...item.value}/>
+                    <LineChart data={item.value} title = "requests/count" aggr="sum"/>
                 </div>
             );
         }

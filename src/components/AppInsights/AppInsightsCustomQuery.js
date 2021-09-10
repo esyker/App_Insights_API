@@ -28,7 +28,7 @@ class AppInsightsCustomQueries extends React.Component{
     querySubmit(event)
     {   
         var path = 'https://api.applicationinsights.io/v1/apps/'+ 
-                            process.env.REACT_APP_APPINSINGHTS_APPID;
+                            process.env.REACT_APP_APPINSIGHTS_APPID_PERSONAL;
         switch(this.state.query_type)
         {   
             case 'metrics':
@@ -50,14 +50,13 @@ class AppInsightsCustomQueries extends React.Component{
         var hr = new XMLHttpRequest();
         hr.onreadystatechange = () => {
             if (hr.readyState === XMLHttpRequest.DONE) {
-            console.log(hr.responseText);
             this.setState({ ...this.state, isLoaded:true, item: JSON.parse(hr.responseText)})
         }}
         hr.onerror = () =>{
             this.setState({...this.state, error:true })
         }
         hr.open('GET', this.state.query_path, true);
-        hr.setRequestHeader("x-api-key", process.env.REACT_APP_APPINSIGHTS_KEY);
+        hr.setRequestHeader("x-api-key", process.env.REACT_APP_APPINSIGHTS_KEY_PERSONAL);
         hr.send();
     }
    
@@ -70,7 +69,6 @@ class AppInsightsCustomQueries extends React.Component{
     render()
     {   
         const { error, isLoaded, item, isQueryChosen } = this.state;
-        console.log(this.state);
         if (error) {
             return <div>Error: {error.message}</div>;
         }else if(!isQueryChosen){
