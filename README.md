@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+#Overview
+Application Insights Data visualization with d3.js Library.
+src/componentes/graphics contains the Graphics components used.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
